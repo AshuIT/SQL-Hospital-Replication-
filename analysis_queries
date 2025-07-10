@@ -1,0 +1,22 @@
+SELECT admission_type, COUNT(*) AS total_admissions
+FROM admissions
+GROUP BY admission_type;
+
+SELECT outcome, AVG(length_of_stay) AS avg_length_of_stay
+FROM outcomes
+GROUP BY outcome;
+
+SELECT p.patient_id, p.first_name, p.last_name, COUNT(a.admission_id) AS admission_count
+FROM patients p
+JOIN admissions a ON p.patient_id = a.patient_id
+GROUP BY p.patient_id, p.first_name, p.last_name
+HAVING COUNT(a.admission_id) > 1;
+
+SELECT
+  (SUM(CASE WHEN outcome = 'Deceased' THEN 1 ELSE 0 END) * 100.0) / COUNT(*) AS mortality_rate_percentage
+FROM outcomes;
+
+SELECT diagnosis_code, diagnosis_description, COUNT(*) AS frequency
+FROM diagnoses
+GROUP BY diagnosis_code, diagnosis_description
+ORDER BY frequency DESC;
