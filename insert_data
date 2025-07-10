@@ -1,0 +1,11 @@
+INSERT INTO patients (patient_id, first_name, last_name, birth_date, gender) VALUES
+();
+
+INSERT INTO admissions (admission_id, patient_id, admission_date, discharge_date, admission_type) VALUES
+();
+
+INSERT INTO diagnoses (diagnosis_id, admission_id, diagnosis_code, diagnosis_description) VALUES
+();
+
+INSERT INTO outcomes (admission_id, outcome, length_of_stay) VALUES
+();
