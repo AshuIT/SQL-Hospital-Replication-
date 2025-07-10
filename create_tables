@@ -1,0 +1,31 @@
+CREATE TABLE patients (
+    patient_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    gender CHAR(1)
+);
+
+CREATE TABLE admissions (
+    admission_id INT PRIMARY KEY,
+    patient_id INT,
+    admission_date DATE,
+    discharge_date DATE,
+    admission_type VARCHAR(20),
+    FOREIGN KEY (patient_id) REFERENCES patients(patient_id)
+);
+
+CREATE TABLE diagnoses (
+    diagnosis_id INT PRIMARY KEY,
+    admission_id INT,
+    diagnosis_code VARCHAR(10),
+    diagnosis_description VARCHAR(255),
+    FOREIGN KEY (admission_id) REFERENCES admissions(admission_id)
+);
+
+CREATE TABLE outcomes (
+    admission_id INT PRIMARY KEY,
+    outcome VARCHAR(50),  -- e.g. 'Recovered', 'Deceased', 'Transferred'
+    length_of_stay INT,   -- days
+    FOREIGN KEY (admission_id) REFERENCES admissions(admission_id)
+);
